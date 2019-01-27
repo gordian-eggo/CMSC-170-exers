@@ -8,21 +8,20 @@ import javax.swing.*;
 public class Board {
 	
 	protected File puzzle;
-	// protected String[][] game = new String[5][5];
 	// protected String[][] current_state = new String[5][5];
 	protected GUI game_UI = new GUI();
 	private boolean win;
 	
 	public Board() {
 
-		puzzle = new File("puzzle.in");
+		puzzle = new File("puzzle2.in");
 
 		try {
 
 			Scanner initial_state = new Scanner(puzzle);
 
 			read_into_array(initial_state);
-			save_curr_state(game_UI.game);
+			// save_curr_state(game_UI.game);
 			set_grid(game_UI);
 
 		} catch (Exception e) {
@@ -32,6 +31,7 @@ public class Board {
 	}
 
 	public void read_into_array(Scanner sc) { // read contents of text file with initial state into layout array
+
 		while(sc.hasNext()) {
 			for (int row = 0; row < 5; row++) {
 				for (int col = 0; col < 5; col++) {
@@ -44,14 +44,11 @@ public class Board {
 
 	public void save_curr_state(String[][] s_arr) {
 		
-		// System.out.println("is g");
-		for (int row = 0; row < 5; row++) {
-			for (int col = 0; col < 5; col++) {
-				game_UI.current_state[row][col] = s_arr[row][col];
-			}
-		}
-
-		// System.out.println("writing to file");
+		// for (int row = 0; row < 5; row++) {
+		// 	for (int col = 0; col < 5; col++) {
+		// 		game_UI.current_state[row][col] = s_arr[row][col];
+		// 	}
+		// }
 
 	}
 

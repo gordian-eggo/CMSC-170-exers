@@ -42,16 +42,6 @@ public class Board {
 
 	}
 
-	public void save_curr_state(String[][] s_arr) {
-		
-		// for (int row = 0; row < 5; row++) {
-		// 	for (int col = 0; col < 5; col++) {
-		// 		game_UI.current_state[row][col] = s_arr[row][col];
-		// 	}
-		// }
-
-	}
-
 	public void set_grid(GUI ui) {
 
 		for (int row = 0; row < 5; row++) {

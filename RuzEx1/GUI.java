@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -83,6 +85,7 @@ public class GUI {
 								game[final_row][final_col] = "f";
 							}
 
+							save_curr_state(game);
 
 						} else if (upper < 0 && left < 0) {
 							/*
@@ -90,60 +93,212 @@ public class GUI {
 									f f
 									f
 							*/
-							lights_grid[lower][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][right].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+
+							if (game[lower][final_col].equals("f")) {
+								lights_grid[lower][final_col].setBackground(Color.YELLOW);
+								game[lower][final_col] = "n";
+							} else if (game[lower][final_col].equals("n")) {
+								lights_grid[lower][final_col].setBackground(Color.WHITE);
+								game[lower][final_col] = "f";
+							}
+
+							if (game[final_row][right].equals("f")) {
+								lights_grid[final_row][right].setBackground(Color.YELLOW);
+								game[final_row][right] = "n";
+							} else if (game[final_row][right].equals("n")) {
+								lights_grid[final_row][right].setBackground(Color.WHITE);
+								game[final_row][right] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						} else if (upper < 0 && right == 5) {
 							/*
 								Area looks like this:
 									f f
 									  f
 							*/
-							lights_grid[final_row][left].setBackground(Color.WHITE);
-							lights_grid[lower][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+							if (game[final_row][left].equals("f")) {
+								lights_grid[final_row][left].setBackground(Color.YELLOW);
+								game[final_row][left] = "n";
+							} else if (game[final_row][left].equals("n")) {
+								lights_grid[final_row][left].setBackground(Color.WHITE);
+								game[final_row][left] = "f";
+							}
+
+							if (game[lower][final_col].equals("f")) {
+								lights_grid[lower][final_col].setBackground(Color.YELLOW);
+								game[lower][final_col] = "n";
+							} else if (game[lower][final_col].equals("n")) {
+								lights_grid[lower][final_col].setBackground(Color.WHITE);
+								game[lower][final_col] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						} else if (lower == 5 && left < 0) {
 							/*
 								Area looks like this:
 									f
 									f f
 							*/
-							lights_grid[upper][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][right].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+							if (game[upper][final_col].equals("f")) {
+								lights_grid[upper][final_col].setBackground(Color.YELLOW);
+								game[upper][final_col] = "n";
+							} else if (game[upper][final_col].equals("n")) {
+								lights_grid[upper][final_col].setBackground(Color.WHITE);
+								game[upper][final_col] = "f";
+							}
+
+							if (game[final_row][right].equals("f")) {
+								lights_grid[final_row][right].setBackground(Color.YELLOW);
+								game[final_row][right] = "n";
+							} else if (game[final_row][right].equals("n")) {
+								lights_grid[final_row][right].setBackground(Color.WHITE);
+								game[final_row][right] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						} else if (lower == 5 && right == 5) {
 							/*
 								Area looks like this:
 									  f
 									f f
 							*/
-							lights_grid[upper][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][left].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+
+							if (game[upper][final_col].equals("f")) {
+								lights_grid[upper][final_col].setBackground(Color.YELLOW);
+								game[upper][final_col] = "n";
+							} else if (game[upper][final_col].equals("n")) {
+								lights_grid[upper][final_col].setBackground(Color.WHITE);
+								game[upper][final_col] = "f";
+							}
+
+							if (game[final_row][left].equals("f")) {
+								lights_grid[final_row][left].setBackground(Color.YELLOW);
+								game[final_row][left] = "n";
+							} else if (game[final_row][left].equals("n")) {
+								lights_grid[final_row][left].setBackground(Color.WHITE);
+								game[final_row][left] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						} else if (upper < 0) {
 							/*
 								Area looks like this:
 									f f f
 									  f
 							*/
-							// System.out.println("here");
-							// System.out.println("upper = " + upper + "\nlower = " + lower + "\nleft = " + left + "\nright = " + right + "\n");
-							lights_grid[final_row][left].setBackground(Color.WHITE);
-							lights_grid[lower][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][right].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+
+							if (game[final_row][left].equals("f")) {
+								lights_grid[final_row][left].setBackground(Color.YELLOW);
+								game[final_row][left] = "n";
+							} else if (game[final_row][left].equals("n")) {
+								lights_grid[final_row][left].setBackground(Color.WHITE);
+								game[final_row][left] = "f";
+							}
+
+							if (game[lower][final_col].equals("f")) {
+								lights_grid[lower][final_col].setBackground(Color.YELLOW);
+								game[lower][final_col] = "n";
+							} else if (game[lower][final_col].equals("n")) {
+								lights_grid[lower][final_col].setBackground(Color.WHITE);
+								game[lower][final_col] = "f";
+							}
+
+							if (game[final_row][right].equals("f")) {
+								lights_grid[final_row][right].setBackground(Color.YELLOW);
+								game[final_row][right] = "n";
+							} else if (game[final_row][right].equals("n")) {
+								lights_grid[final_row][right].setBackground(Color.WHITE);
+								game[final_row][right] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						} else if (lower == 5) {
 							/*
 								Area looks like this:
 									  f 
 									f f f
 							*/
-							// System.out.println("now here");
-							// System.out.println("upper = " + upper + "\nlower = " + lower + "\nleft = " + left + "\nright = " + right + "\n");
-							lights_grid[upper][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][left].setBackground(Color.WHITE);
-							lights_grid[final_row][right].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+
+							if (game[upper][final_col].equals("f")) {
+								lights_grid[upper][final_col].setBackground(Color.YELLOW);
+								game[upper][final_col] = "n";
+							} else if (game[upper][final_col].equals("n")) {
+								lights_grid[upper][final_col].setBackground(Color.WHITE);
+								game[upper][final_col] = "f";
+							}
+
+							if (game[final_row][left].equals("f")) {
+								lights_grid[final_row][left].setBackground(Color.YELLOW);
+								game[final_row][left] = "n";
+							} else if (game[final_row][left].equals("n")) {
+								lights_grid[final_row][left].setBackground(Color.WHITE);
+								game[final_row][left] = "f";
+							}
+
+							if (game[final_row][right].equals("f")) {
+								lights_grid[final_row][right].setBackground(Color.YELLOW);
+								game[final_row][right] = "n";
+							} else if (game[final_row][right].equals("n")) {
+								lights_grid[final_row][right].setBackground(Color.WHITE);
+								game[final_row][right] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						} else if (right == 5) {
 							/*
 								Area looks like this:
@@ -151,12 +306,41 @@ public class GUI {
 									f f
 									  f
 							*/
-							// System.out.println("then here");
-							// System.out.println("upper = " + upper + "\nlower = " + lower + "\nleft = " + left + "\nright = " + right + "\n");
-							lights_grid[upper][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][left].setBackground(Color.WHITE);
-							lights_grid[lower][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+
+							if (game[upper][final_col].equals("f")) {
+								lights_grid[upper][final_col].setBackground(Color.YELLOW);
+								game[upper][final_col] = "n";
+							} else if (game[upper][final_col].equals("n")) {
+								lights_grid[upper][final_col].setBackground(Color.WHITE);
+								game[upper][final_col] = "f";
+							}
+
+							if (game[final_row][left].equals("f")) {
+								lights_grid[final_row][left].setBackground(Color.YELLOW);
+								game[final_row][left] = "n";
+							} else if (game[final_row][left].equals("n")) {
+								lights_grid[final_row][left].setBackground(Color.WHITE);
+								game[final_row][left] = "f";
+							}
+
+							if (game[lower][final_col].equals("f")) {
+								lights_grid[lower][final_col].setBackground(Color.YELLOW);
+								game[lower][final_col] = "n";
+							} else if (game[lower][final_col].equals("n")) {
+								lights_grid[lower][final_col].setBackground(Color.WHITE);
+								game[lower][final_col] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						} else if (left < 0) {
 							/*
 								Area looks like this:
@@ -164,17 +348,47 @@ public class GUI {
 									f f
 									f
 							*/
-							// System.out.println("and here");
-							// System.out.println("upper = " + upper + "\nlower = " + lower + "\nleft = " + left + "\nright = " + right + "\n");
-							lights_grid[upper][final_col].setBackground(Color.WHITE);
-							lights_grid[lower][final_col].setBackground(Color.WHITE);
-							lights_grid[final_row][right].setBackground(Color.WHITE);
-							lights_grid[final_row][final_col].setBackground(Color.WHITE);
+
+							if (game[upper][final_col].equals("f")) {
+								lights_grid[upper][final_col].setBackground(Color.YELLOW);
+								game[upper][final_col] = "n";
+							} else if (game[upper][final_col].equals("n")) {
+								lights_grid[upper][final_col].setBackground(Color.WHITE);
+								game[upper][final_col] = "f";
+							}
+
+							if (game[lower][final_col].equals("f")) {
+								lights_grid[lower][final_col].setBackground(Color.YELLOW);
+								game[lower][final_col] = "n";
+							} else if (game[lower][final_col].equals("n")) {
+								lights_grid[lower][final_col].setBackground(Color.WHITE);
+								game[lower][final_col] = "f";
+							}
+
+							if (game[final_row][right].equals("f")) {
+								lights_grid[final_row][right].setBackground(Color.YELLOW);
+								game[final_row][right] = "n";
+							} else if (game[final_row][right].equals("n")) {
+								lights_grid[final_row][right].setBackground(Color.WHITE);
+								game[final_row][right] = "f";
+							}
+
+							if (game[final_row][final_col].equals("f")) {
+								lights_grid[final_row][final_col].setBackground(Color.YELLOW);
+								game[final_row][final_col] = "n";
+							} else if (game[final_row][final_col].equals("n")) {
+								lights_grid[final_row][final_col].setBackground(Color.WHITE);
+								game[final_row][final_col] = "f";
+							}
+
+							save_curr_state(game);
+
 						}
 					}
 				});
 
 				game_grid.add(lights_grid[row][col]);
+
 			}
 		}
 
@@ -183,6 +397,32 @@ public class GUI {
 		frame.setSize(300,300);
 		frame.pack();
 		frame.setVisible(true);
+
+	}
+
+	public void save_curr_state(String[][] arr) {
+
+		try {
+
+			FileWriter write_file = new FileWriter(current_state);
+			PrintWriter print_to_file = new PrintWriter(write_file);
+
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+					print_to_file.print(game[i][j] + " ");
+				}
+				print_to_file.print("\n");
+			}
+
+			print_to_file.close();
+
+		} catch (Exception e) {
+
+		} finally {
+
+		}
+
+
 	}
 
 }

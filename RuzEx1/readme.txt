@@ -1,3 +1,7 @@
+RUZ, Julianne Marie
+2014-04280
+CMSC 170 U-1L
+
 Exercise 1: Lights Out game as refresher for Java/Python
 
-Run command: clear && javac -d . *.java && jar cfm RuzEx1.jar Manifest.txt *.class && java -jar RuzEx1.jar
+Run command: ./RUNME.sh

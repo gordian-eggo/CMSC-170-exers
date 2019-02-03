@@ -459,5 +459,301 @@ public class GUI {
 
 	}
 
+	public void board_toggle(int row, int col) {		// does same thing as toggle_lights, but avoids changing the UI
+
+		int upper = row - 1;
+		int lower = row + 1;
+		int left = col - 1;
+		int right = col + 1;
+		int final_col = col;
+		int final_row = row;
+
+		if ((upper >= 0 && upper < 5) && (lower >= 0 && lower < 5) && (right >= 0 && right < 5) && (left >= 0 && left < 5)) {
+			/*
+				Area looks like this:
+					f
+				  f f f
+				    f
+
+			*/
+
+			if (game[upper][final_col].equals("f")) {
+				game[upper][final_col] = "n";
+			} else if (game[upper][final_col].equals("n")) {
+				game[upper][final_col] = "f";
+			}
+
+			if (game[final_row][left].equals("f")) {
+				game[final_row][left] = "n";
+			} else if (game[final_row][left].equals("n")) {
+				game[final_row][left] = "f";
+			}
+
+			if (game[lower][final_col].equals("f")) {
+				game[lower][final_col] = "n";
+			} else if (game[lower][final_col].equals("n")) {
+				game[lower][final_col] = "f";
+			}
+
+			if (game[final_row][right].equals("f")) {
+				game[final_row][right] = "n";
+			} else if (game[final_row][right].equals("n")) {
+				game[final_row][right] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (upper < 0 && left < 0) {
+
+			/*
+				Area looks like this:
+					f f
+					f
+			*/
+
+			if (game[lower][final_col].equals("f")) {
+				game[lower][final_col] = "n";
+			} else if (game[lower][final_col].equals("n")) {
+				game[lower][final_col] = "f";
+			}
+
+			if (game[final_row][right].equals("f")) {
+				game[final_row][right] = "n";
+			} else if (game[final_row][right].equals("n")) {
+				game[final_row][right] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (upper < 0 && right == 5) {
+			/*
+				Area looks like this:
+					f f
+					  f
+			*/
+			if (game[final_row][left].equals("f")) {
+				game[final_row][left] = "n";
+			} else if (game[final_row][left].equals("n")) {
+				game[final_row][left] = "f";
+			}
+
+			if (game[lower][final_col].equals("f")) {
+				game[lower][final_col] = "n";
+			} else if (game[lower][final_col].equals("n")) {
+				game[lower][final_col] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (lower == 5 && left < 0) {
+			/*
+				Area looks like this:
+					f
+					f f
+			*/
+			if (game[upper][final_col].equals("f")) {
+				game[upper][final_col] = "n";
+			} else if (game[upper][final_col].equals("n")) {
+				game[upper][final_col] = "f";
+			}
+
+			if (game[final_row][right].equals("f")) {
+				game[final_row][right] = "n";
+			} else if (game[final_row][right].equals("n")) {
+				game[final_row][right] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (lower == 5 && right == 5) {
+			/*
+				Area looks like this:
+					  f
+					f f
+			*/
+
+			if (game[upper][final_col].equals("f")) {
+				game[upper][final_col] = "n";
+			} else if (game[upper][final_col].equals("n")) {
+				game[upper][final_col] = "f";
+			}
+
+			if (game[final_row][left].equals("f")) {
+				game[final_row][left] = "n";
+			} else if (game[final_row][left].equals("n")) {
+				game[final_row][left] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (upper < 0) {
+			/*
+				Area looks like this:
+					f f f
+					  f
+			*/
+
+			if (game[final_row][left].equals("f")) {
+				game[final_row][left] = "n";
+			} else if (game[final_row][left].equals("n")) {
+				game[final_row][left] = "f";
+			}
+
+			if (game[lower][final_col].equals("f")) {
+				game[lower][final_col] = "n";
+			} else if (game[lower][final_col].equals("n")) {
+				game[lower][final_col] = "f";
+			}
+
+			if (game[final_row][right].equals("f")) {
+				game[final_row][right] = "n";
+			} else if (game[final_row][right].equals("n")) {
+				game[final_row][right] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (lower == 5) {
+			/*
+				Area looks like this:
+					  f 
+					f f f
+			*/
+
+			if (game[upper][final_col].equals("f")) {
+				game[upper][final_col] = "n";
+			} else if (game[upper][final_col].equals("n")) {
+				game[upper][final_col] = "f";
+			}
+
+			if (game[final_row][left].equals("f")) {
+				game[final_row][left] = "n";
+			} else if (game[final_row][left].equals("n")) {
+				game[final_row][left] = "f";
+			}
+
+			if (game[final_row][right].equals("f")) {
+				game[final_row][right] = "n";
+			} else if (game[final_row][right].equals("n")) {
+				game[final_row][right] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (right == 5) {
+			/*
+				Area looks like this:
+					  f  
+					f f
+					  f
+			*/
+
+			if (game[upper][final_col].equals("f")) {
+				game[upper][final_col] = "n";
+			} else if (game[upper][final_col].equals("n")) {
+				game[upper][final_col] = "f";
+			}
+
+			if (game[final_row][left].equals("f")) {
+				game[final_row][left] = "n";
+			} else if (game[final_row][left].equals("n")) {
+				game[final_row][left] = "f";
+			}
+
+			if (game[lower][final_col].equals("f")) {
+				game[lower][final_col] = "n";
+			} else if (game[lower][final_col].equals("n")) {
+				game[lower][final_col] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+
+		} else if (left < 0) {
+			/*
+				Area looks like this:
+					f  
+					f f
+					f
+			
+			*/	
+			
+			if (game[upper][final_col].equals("f")) {
+				game[upper][final_col] = "n";
+			} else if (game[upper][final_col].equals("n")) {
+				game[upper][final_col] = "f";
+			}
+
+			if (game[lower][final_col].equals("f")) {
+				game[lower][final_col] = "n";
+			} else if (game[lower][final_col].equals("n")) {
+				game[lower][final_col] = "f";
+			}
+
+			if (game[final_row][right].equals("f")) {
+				game[final_row][right] = "n";
+			} else if (game[final_row][right].equals("n")) {
+				game[final_row][right] = "f";
+			}
+
+			if (game[final_row][final_col].equals("f")) {
+				game[final_row][final_col] = "n";
+			} else if (game[final_row][final_col].equals("n")) {
+				game[final_row][final_col] = "f";
+			}
+
+			save_curr_state(game);
+	
+		}
+
+	}
+
 
 }

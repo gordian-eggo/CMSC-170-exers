@@ -22,7 +22,9 @@ public class Board {
 			read_into_array(initial_state);
 			set_grid(game_UI);
 
-			generate_initial_frontier(frontier);
+			State win_state = DFSearch();
+			win = goal_test(win_state);
+			System.out.println(win);
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -56,7 +58,7 @@ public class Board {
 
 	}
 
-	public void generate_initial_frontier(Stack<State> state_stack) {	// generates the frontier for the BFS and DFS functions 
+	public void generate_initial_frontier(Stack<State> state_stack) {	// generates the frontier for the DFS function 
 
 		int cost = 1;
 
@@ -65,22 +67,104 @@ public class Board {
 				
 				State s = new State();
 				s.set_cost(cost);
-				game_UI.toggle_lights(i,j);
+				game_UI.board_toggle(i,j);
 				s.set_current_board(game_UI);
 				s.set_is_level_2_state(true);
-				game_UI.toggle_lights(i,j);
+				game_UI.board_toggle(i,j);
+				s.set_coordinates(i,j);
 
 				state_stack.push(s);
 
 			}
 		}
 
-		State temp = state_stack.pop();
+	}
 
-		System.out.println(temp.cost);
-		System.out.println(temp.is_level_2_state);
-		System.out.println(temp.current_board[4][4]);
+	public ArrayList<ClickedButton> actions(State curr_state) { 			// generates possible actions for any given state
 
+		ArrayList<ClickedButton> action_set = new ArrayList<ClickedButton>();
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				
+				ClickedButton button = new ClickedButton(i,j);
+				action_set.add(button);
+
+			}
+		}
+
+		return action_set;		
+
+	}
+
+	public boolean goal_test(State s) {
+
+		boolean winning = true;
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				
+				if (s.current_board[i][j].equals("n")) {
+					winning = false;
+				}
+
+			}
+		}
+
+		return winning;
+
+	}
+
+	public State result(State s, ClickedButton c) {
+
+		int new_cost = s.get_cost() + 1;
+
+		game_UI.board_toggle(c.x_coor, c.y_coor);
+
+		State res = new State();
+		res.set_cost(new_cost);
+		res.set_current_board(game_UI);
+		res.set_is_level_2_state(false);
+		game_UI.board_toggle(c.x_coor, c.y_coor);
+		res.set_parent(s);
+		res.set_coordinates(c.x_coor, c.y_coor);
+
+		return res;
+
+
+	}
+
+	public State DFSearch() {
+
+		State win_state = new State();
+		int state_count = 0;
+		
+		generate_initial_frontier(frontier);
+		System.out.println(frontier.empty());
+
+		System.out.println("Generating states. Please bear with us.");
+		while (!frontier.empty()) {
+
+			state_count++;
+
+			State curr = frontier.pop();
+			System.out.println("State count: " + state_count);
+
+			if (goal_test(curr)) {
+
+				win_state = curr;
+
+			} else {
+
+				for (ClickedButton action : actions(curr)) {
+					frontier.push(result(curr, action));
+				}
+
+			}
+
+		}
+
+		return win_state;
 
 	}
 

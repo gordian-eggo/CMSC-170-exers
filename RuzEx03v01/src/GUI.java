@@ -16,15 +16,14 @@ import javax.swing.filechooser.FileSystemView;
 
 public class GUI {
 
-	// protected Board game_board;
 	protected String[][] game;
 	protected File current_state = new File("current_state.txt");
 	protected File game_layout;
 
 	public GUI() {
 
-		JFrame frame = new JFrame("Maze Solver (AStar)");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// JFrame frame = new JFrame("Maze Solver (AStar)");
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JFileChooser layout_picker = new JFileChooser(FileSystemView.getFileSystemView());
 		layout_picker.setCurrentDirectory(current_state);
@@ -34,9 +33,9 @@ public class GUI {
 			game_layout = layout_picker.getSelectedFile();
 		}
 
-		frame.setSize(300,300);
-		frame.pack();
-		frame.setVisible(true);
+		// frame.setSize(300,300);
+		// frame.pack();
+		// frame.setVisible(true);
 
 	}
 

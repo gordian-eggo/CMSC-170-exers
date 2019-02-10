@@ -23,8 +23,8 @@ public class Board {
 			set_grid(game_UI);
 
 			State win_state = DFSearch();
-			win = goal_test(win_state);
-			System.out.println(win);
+			// win = goal_test(win_state);
+			// System.out.println(win);
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -62,7 +62,7 @@ public class Board {
 
 		int cost = 1;
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 5 ; i++) {
 			for (int j = 0; j < 5; j++) {
 				
 				State s = new State();
@@ -70,8 +70,8 @@ public class Board {
 				game_UI.board_toggle(i,j);
 				s.set_current_board(game_UI);
 				s.set_is_level_2_state(true);
-				game_UI.board_toggle(i,j);
 				s.set_coordinates(i,j);
+				game_UI.board_toggle(i,j);
 
 				state_stack.push(s);
 
@@ -125,9 +125,18 @@ public class Board {
 		res.set_cost(new_cost);
 		res.set_current_board(game_UI);
 		res.set_is_level_2_state(false);
-		game_UI.board_toggle(c.x_coor, c.y_coor);
 		res.set_parent(s);
 		res.set_coordinates(c.x_coor, c.y_coor);
+
+		System.out.println("Result:");
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				System.out.print(new_state.current_board[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+		game_UI.board_toggle(c.x_coor, c.y_coor);
 
 		return res;
 
@@ -137,18 +146,26 @@ public class Board {
 	public State DFSearch() {
 
 		State win_state = new State();
+		State curr = new State();
 		int state_count = 0;
 		
 		generate_initial_frontier(frontier);
-		System.out.println(frontier.empty());
 
 		System.out.println("Generating states. Please bear with us.");
 		while (!frontier.empty()) {
 
 			state_count++;
 
-			State curr = frontier.pop();
+			curr = (State)frontier.pop();
 			System.out.println("State count: " + state_count);
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+					System.out.print(curr.current_board[i][j] + " ");
+				}
+				System.out.println();
+			}
+
+			if (state_count == 3) { break; }
 
 			if (goal_test(curr)) {
 
@@ -156,8 +173,20 @@ public class Board {
 
 			} else {
 
+				System.out.println("generating new states...");
 				for (ClickedButton action : actions(curr)) {
-					frontier.push(result(curr, action));
+					State new_state = new State();
+					new_state = result(curr, action);
+
+					// System.out.println("[New state] (" + new_state.coordinates.x_coor + "," + new_state.coordinates.y_coor + ") :");
+					// for (int i = 0; i < 5; i++) {
+					// 	for (int j = 0; j < 5; j++) {
+					// 		System.out.print(new_state.current_board[i][j] + " ");
+					// 	}
+					// 	System.out.println();
+					// }
+
+					frontier.push(new_state);
 				}
 
 			}
